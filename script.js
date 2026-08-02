@@ -1,4 +1,4 @@
-// Friendship Day Website
+ebsite
 document.addEventListener("DOMContentLoaded", () => {
 
     // Typing effect
@@ -46,14 +46,4 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(heart);
 
         setTimeout(() => {
-            heart.style.bottom = "100vh";
-            heart.style.opacity = "0";
-        }, 100);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-
-    }, 700);
-
-});
+            heart.style.bottom = "100vh"
