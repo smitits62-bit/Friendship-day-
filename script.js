@@ -1,14 +1,14 @@
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-const loader=document.getElementById("loader");
-const intro=document.getElementById("introVideo");
-const hero=document.getElementById("hero");
-const skipBtn=document.getElementById("skipBtn");
-const startBtn=document.getElementById("startBtn");
-const music=document.getElementById("bgMusic");
-const typing=document.getElementById("typing");
+const loader = document.getElementById("loader");
+const intro = document.getElementById("introVideo");
+const hero = document.getElementById("hero");
+const skipBtn = document.getElementById("skipBtn");
+const startBtn = document.getElementById("startBtn");
+const music = document.getElementById("bgMusic");
+const typing = document.getElementById("typing");
 
-const message=`Dear Kintalvi ❤️,
+const message = `Dear Kintalvi ❤️,
 
 Happy Friendship Day!
 
@@ -22,35 +22,52 @@ Stay happy, stay blessed and keep smiling forever. ❤️
 
 — Aa`;
 
-function showWebsite(){
-loader.style.display="none";
-intro.style.display="none";
-skipBtn.style.display="none";
-hero.style.display="flex";
+function showWebsite() {
+    loader.style.display = "none";
+
+    if (intro) intro.style.display = "none";
+    if (skipBtn) skipBtn.style.display = "none";
+
+    if (hero) hero.style.display = "flex";
 }
 
-intro.onended=showWebsite;
-skipBtn.onclick=showWebsite;
+if (hero) hero.style.display = "none";
 
-startBtn.onclick=()=>{
-music.play();
-
-let i=0;
-
-function type(){
-if(i<message.length){
-typing.innerHTML+=message.charAt(i);
-i++;
-setTimeout(type,40);
-}
+if (intro) {
+    intro.onended = showWebsite;
+    intro.onerror = showWebsite;
 }
 
-typing.innerHTML="";
-type();
+if (skipBtn) {
+    skipBtn.onclick = showWebsite;
+}
 
-document.querySelector(".message").scrollIntoView({
-behavior:"smooth"
-});
-};
+setTimeout(showWebsite, 5000);
+
+if (startBtn) {
+    startBtn.onclick = () => {
+
+        if (music) {
+            music.play().catch(() => {});
+        }
+
+        let i = 0;
+        typing.innerHTML = "";
+
+        function type() {
+            if (i < message.length) {
+                typing.innerHTML += message.charAt(i);
+                i++;
+                setTimeout(type, 40);
+            }
+        }
+
+        type();
+
+        document.querySelector(".message").scrollIntoView({
+            behavior: "smooth"
+        });
+    };
+}
 
 });
